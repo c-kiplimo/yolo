@@ -1,4 +1,6 @@
-FROM node:19.0.0-alpine3.16 as builder
+ARG NODE_VERSION=19.0.0-alpine3.16
+
+FROM node:${NODE_VERSION} as builder
 
 WORKDIR /usr/src/app
 
@@ -8,18 +10,12 @@ RUN npm install --production
 
 COPY . .
 
-FROM gcr.io/distroless/nodejs18-debian11
+FROM node:${NODE_VERSION} as runner
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app/package*.json ./
-COPY --from=builder /usr/src/app/server.js ./
-COPY --from=builder /usr/src/app/config.js ./
-COPY --from=builder /usr/src/app/routes ./routes
-COPY --from=builder /usr/src/app/models ./models
+COPY --from=builder /usr/src/app /usr/src/app
 
-# Expose port 5000
 EXPOSE 5000
 
-# Start the application
-CMD ["node", "server.js"]
+CMD ["npm", "start"]

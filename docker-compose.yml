@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    image: collins6299/yolo-backend:1.0.8
+    container_name: yolo-back-end
+    working_dir: /usr/src/app
+    networks:
+      - node-network
+    volumes:
+      - ./node:/usr/src/app/node
+      - /usr/src/app/node_modules
+    tty: true
+    ports:
+      - "5000:5000"
+    command: npm start
+
+  client:
+    image: collins6299/yolo-client:1.0.4
+    container_name: yolo-front-end
+    working_dir: /usr/src/app
+    networks:
+      - node-network
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    ports:
+      - "3000:3000"
+    command: npm start
+
+networks:
+  node-network:
+    driver: bridge
