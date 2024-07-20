@@ -81,7 +81,7 @@ docker-compose up -d backend
 ```
 ![alt text](RunningContainers.jpg)
 
-### Docker images screenshots
+### Docker Images screenshots
 + + client
 
 ![alt text](clientImage.jpg)
