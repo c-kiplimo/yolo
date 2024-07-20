@@ -88,4 +88,4 @@ docker-compose up -d backend
 
 + + backend
 
-![alt text](backendImage.jpg)
+![alt text](backendDockerImage.jpg)
