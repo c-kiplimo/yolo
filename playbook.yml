@@ -1,0 +1,37 @@
+---
+- hosts: web
+  become: yes
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - docker
+    - cliet
+    - backend
+
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: 
+          - git
+          - python3-pip
+        state: present
+
+    - name: Clone GitHub repository
+      git:
+        repo: 'https://github.com/c-kiplimo/yolo/tree/master'
+        dest: /home/vagrant/yolo
+        version: main
+        force: yes
+
+    - name: Include docker role
+      include_role:
+        name: docker
+
+    - name: Include frontend role
+      include_role:
+        name: client
+
+    - name: Include backend role
+      include_role:
+        name: backend
