@@ -89,3 +89,35 @@ docker-compose up -d backend
 + backend
 
 ![alt text](backendDockerImage.jpg)
+
+# Explanation of the Ansible Playbook
+
+## Order of Execution
+
+1. **Install dependencies**: 
+   - Install Git and Python3 pip to ensure the environment is ready for cloning repositories and managing Python packages.
+
+2. **Clone GitHub repository**: 
+   - Use the `git` module to clone the application repository from GitHub into the specified directory on the Vagrant VM.
+
+3. **Include docker role**:
+   - The `docker` role is included to install Docker and its dependencies, ensuring the environment can build and run Docker containers.
+
+4. **Include frontend role**:
+   - The `client` role builds and runs the Docker container for the frontend service. It builds the image from the Dockerfile located in the `client` directory of the cloned repository and runs the container, mapping the necessary ports.
+
+5. **Include backend role**:
+   - The `backend` role builds and runs the Docker container for the backend service. It builds the image from the Dockerfile located in the `backend` directory of the cloned repository and runs the container, mapping the necessary ports.
+
+## Roles and Modules
+
+### Docker Role
+- **docker/tasks/main.yml**: This role installs Docker and its dependencies using the `apt` module, adds the Docker GPG key and repository, installs Docker CE, and installs the Docker Python module.
+
+### Frontend Role
+- **frontend/tasks/main.yml**: This role builds the Docker image for the frontend service using the `docker_image` module and runs the container using the `docker_container` module.
+
+### Backend Role
+- **backend/tasks/main.yml**: This role builds the Docker image for the backend service using the `docker_image` module and runs the container using the `docker_container` module.
+
+The playbook ensures the application is cloned from GitHub, Docker is installed, and the frontend and backend services are set up and running in their respective containers. This setup can be accessed and verified through the browser once the playbook execution is complete.
