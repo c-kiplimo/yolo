@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    # Specify the base box
+    config.vm.box = "ubuntu/focal64"
+  
+    # Forward port 3000 on the guest to port 3000 on the host
+    config.vm.network "forwarded_port", guest: 3000, host: 3000
+    
+    # Set up provisioning with Ansible
+    config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  
+    # VirtualBox provider settings
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+  end
+  
