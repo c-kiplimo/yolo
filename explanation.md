@@ -92,8 +92,6 @@ docker-compose up -d backend
 
 # Explanation of the Ansible Playbook
 
-## Order of Execution
-
 1. **Install dependencies**: 
    - Install Git and Python3 pip to ensure the environment is ready for cloning repositories and managing Python packages.
 
