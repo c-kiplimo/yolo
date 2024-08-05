@@ -113,7 +113,7 @@ docker-compose up -d backend
 - **docker/tasks/main.yml**: This role installs Docker and its dependencies using the `apt` module, adds the Docker GPG key and repository, installs Docker CE, and installs the Docker Python module.
 
 ### Frontend Role
-- **frontend/tasks/main.yml**: This role builds the Docker image for the frontend service using the `docker_image` module and runs the container using the `docker_container` module.
+- **client/tasks/main.yml**: This role builds the Docker image for the frontend service using the `docker_image` module and runs the container using the `docker_container` module.
 
 ### Backend Role
 - **backend/tasks/main.yml**: This role builds the Docker image for the backend service using the `docker_image` module and runs the container using the `docker_container` module.
