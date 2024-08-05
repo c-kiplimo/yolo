@@ -1,0 +1,14 @@
+---
+- name: Pull backend Docker image
+  docker_image:
+    name: "{{ backend_image }}"
+    source: pull
+
+- name: Run backend container
+  docker_container:
+    name: backend
+    image: "{{ backend_image }}"
+    ports:
+      - "5000:5000"
+    state: started
+    restart_policy: always

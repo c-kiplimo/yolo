@@ -1,0 +1,14 @@
+---
+- name: Pull frontend Docker image
+  docker_image:
+    name: "{{ client_image }}"
+    source: pull
+
+- name: Run frontend container
+  docker_container:
+    name: client
+    image: "{{ client_image }}"
+    ports:
+      - "3000:3000"
+    state: started
+    restart_policy: always
