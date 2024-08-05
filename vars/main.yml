@@ -1,0 +1,6 @@
+docker_version: "20.10.7"
+client_image: "collins6299/yolo-client:1.0.4"
+backend_image: "collins6299/yolo-backend:1.0.8"
+
+
+
