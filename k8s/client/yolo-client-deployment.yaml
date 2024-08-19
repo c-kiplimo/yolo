@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: client-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: client
@@ -13,13 +14,13 @@ spec:
     spec:
       containers:
       - name: client
-        image: collins6299/yolo-client:1.0.4
+        image: collins6299/yolo-client:1.0.5
         resources:
           requests:
-            memory: "128Mi"
+            memory: "128Mi"  # Example values within Autopilot's acceptable range
             cpu: "250m"
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "500m"
         ports:
         - containerPort: 3000

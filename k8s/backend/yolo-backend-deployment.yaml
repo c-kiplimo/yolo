@@ -15,16 +15,14 @@ spec:
         - name: backend
           image: collins6299/yolo-backend:1.0.9
           resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
           ports:
-          - containerPort: 5000
-
+            - containerPort: 5000
           env:
-          - name: MONGODB_URI
-            value: mongodb://mongo-service:27017/yolo
-
+            - name: MONGODB_URI
+              value: mongodb://mongo-service:27017/yolo

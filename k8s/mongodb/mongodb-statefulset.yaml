@@ -21,6 +21,13 @@ spec:
           volumeMounts:
             - name: mongo-data-vol-storage
               mountPath: /data/db
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
   volumeClaimTemplates:
     - metadata:
         name: mongo-data-vol-storage
@@ -28,4 +35,4 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 1Gi
+            storage: 500Mi
