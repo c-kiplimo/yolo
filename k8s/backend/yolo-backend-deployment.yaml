@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: backend-deployment
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: backend
@@ -14,9 +13,18 @@ spec:
     spec:
       containers:
         - name: backend
-          image: collins6299/yolo-backend:1.0.8
+          image: collins6299/yolo-backend:1.0.9
+          resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
           ports:
-            - containerPort: 5000
+          - containerPort: 5000
+
           env:
-            - name: MONGO_URI
-              value: "mongodb+srv://ckiplimo54:Ngetich1234@yolo.nudp5jl.mongodb.net/darkroom-dev?retryWrites=true&w=majority"  
+          - name: MONGODB_URI
+            value: mongodb://mongo-service:27017/yolo
+
