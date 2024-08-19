@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: client-deployment
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: client
@@ -13,7 +12,14 @@ spec:
         app: client
     spec:
       containers:
-        - name: client
-          image: collins6299/yolo-client:1.0.4
-          ports:
-            - containerPort: 3000
+      - name: client
+        image: collins6299/yolo-client:1.0.4
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
