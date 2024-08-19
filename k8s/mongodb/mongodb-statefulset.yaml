@@ -1,11 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongo
-  namespace: mongo-namespace
+  name: mongo-statefulset
 spec:
-  serviceName: "mongo-svc"
-  replicas: 3
+  serviceName: "mongo-service"
+  replicas: 1
   selector:
     matchLabels:
       app: mongo
@@ -15,23 +14,18 @@ spec:
         app: mongo
     spec:
       containers:
-      - name: mongo
-        image: mongo:4.4
-        command:
-          - mongod
-          - "--replSet"
-          - "rs0"
-          - "--bind_ip_all"
-        ports:
-          - containerPort: 27017
-        volumeMounts:
-          - name: mongo-persistent-storage
-            mountPath: /data/db
+        - name: mongo
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data-vol-storage
+              mountPath: /data/db
   volumeClaimTemplates:
-  - metadata:
-      name: mongo-persistent-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 10Gi
+    - metadata:
+        name: mongo-data-vol-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
