@@ -1,8 +1,8 @@
 const config = {
     mongoURI: {
-        production: 'mongodb://mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/darkroom?replicaSet=rs0',
-        development: 'mongodb://mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/darkroom-dev?replicaSet=rs0',
-        test: 'mongodb://mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/darkroom-test?replicaSet=rs0'
+        production: 'mongodb+srv://ckiplimo54:Ngetich1234@yolo.nudp5jl.mongodb.net/darkroom?retryWrites=true&w=majority',
+        development: 'mongodb+srv://ckiplimo54:Ngetich1234@yolo.nudp5jl.mongodb.net/darkroom-dev?retryWrites=true&w=majority',
+        test: 'mongodb+srv://ckiplimo54:Ngetich1234@yolo.nudp5jl.mongodb.net/darkroom-test?retryWrites=true&w=majority'
     }
 };
 
